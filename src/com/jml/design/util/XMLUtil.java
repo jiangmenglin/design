@@ -38,7 +38,34 @@ public class XMLUtil {
         }
     }
 
+    public static Object getBean(String name, String arg) {
+        try {
+            //创建文档
+            DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = dFactory.newDocumentBuilder();
+            InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream("resource" + File.separator + name);
+            Document doc = builder.parse(file);
+
+            //获取包含类名的文本节点
+            NodeList nl = doc.getElementsByTagName("className");
+            Node classNode = null;
+            if (arg.equals("image")) {
+                classNode = nl.item(0).getFirstChild();
+            }else if (arg.equals("os")) {
+                classNode = nl.item(1).getFirstChild();
+            }
+            String className = classNode.getNodeValue();
+
+            //通过反射拿到对象并返回
+            Class clazz = Class.forName(className);
+            return clazz.newInstance();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.printf("the bean is :%s", getBean("config.xml").getClass().getName());
+        System.out.printf("the bean is :%s", getBean("factory.xml").getClass().getName());
     }
 }

@@ -19,7 +19,7 @@ public class Client {
         TextField textField;
         ComboBox comboBox;
 
-        factory = (SkinFactory) XMLUtil.getBean("config.xml");
+        factory = (SkinFactory) XMLUtil.getBean("factory.xml");
 
         button = factory.createButton();
         textField = factory.createTextField();
