@@ -10,8 +10,9 @@ public class Singleton {
 
     }
 
+    //缺点是每次获取 线程都要锁定代码，效率低下
     public synchronized static Singleton getInstance() {
-        while(instance == null) {
+        if (instance == null) {
             instance = new Singleton();
         }
         return instance;
