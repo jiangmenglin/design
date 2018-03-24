@@ -4,7 +4,7 @@ import com.jml.design.factory.abstract_factory.skin.box.ComboBox;
 import com.jml.design.factory.abstract_factory.skin.button.Button;
 import com.jml.design.factory.abstract_factory.skin.factory.SkinFactory;
 import com.jml.design.factory.abstract_factory.skin.text.TextField;
-import com.jml.design.factory.abstract_factory.skin.util.XMLUtil;
+import com.jml.design.util.XMLUtil;
 
 /**
  * @Author: jml
@@ -19,7 +19,7 @@ public class Client {
         TextField textField;
         ComboBox comboBox;
 
-        factory = (SkinFactory) XMLUtil.getBean();
+        factory = (SkinFactory) XMLUtil.getBean("config.xml");
 
         button = factory.createButton();
         textField = factory.createTextField();

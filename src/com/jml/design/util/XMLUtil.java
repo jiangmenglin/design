@@ -1,4 +1,4 @@
-package com.jml.design.factory.abstract_factory.skin.util;
+package com.jml.design.util;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -16,12 +16,12 @@ import java.io.InputStream;
  */
 public class XMLUtil {
     //从XML配置文件中提取具体的类名，并返回一个实例对象
-    public static Object getBean() {
+    public static Object getBean(String name) {
         try {
             //创建文档
             DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = dFactory.newDocumentBuilder();
-            InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream("resource" + File.separator + "config.xml");
+            InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream("resource" + File.separator + name);
             Document doc = builder.parse(file);
 
             //获取包含类名的文本节点
@@ -39,6 +39,6 @@ public class XMLUtil {
     }
 
     public static void main(String[] args) {
-        System.out.printf("the bean is :%s", getBean().getClass().getName());
+        System.out.printf("the bean is :%s", getBean("config.xml").getClass().getName());
     }
 }
