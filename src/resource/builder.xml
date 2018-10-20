@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <!--<className>com.jml.design.factory.abstract_factory.skin.factory.SpringSkinFactory</className>-->
+    <className>com.jml.design.builder.actor.AngelBuidler</className>
+</config>
